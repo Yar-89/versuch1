@@ -1,9 +1,13 @@
 package business;
 
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
-import java.io.FileReader;
+
 import java.io.FileWriter;
+
+import fabrikMethodAlSammour.ConcretecsvtxtCreator;
+import fabrikMethodAlSammour.CreatorsAlSammour;
+import fabrikMethodAlSammour.ProductAlSammour;
 
 public class MoebelstueckModel {
 	private Moebelstueck moebelstueck;
@@ -17,14 +21,17 @@ public class MoebelstueckModel {
 	} 
 	
 	public void leseAusDatei(String typ)throws Exception {
-		BufferedReader ein = new BufferedReader(new FileReader("Moebelstueck.csv"));
-	    String[] zeile = ein.readLine().split(";");
+		//BufferedReader ein = new BufferedReader(new FileReader("Moebelstueck.csv"));
+		CreatorsAlSammour creatorsAlSammour = new ConcretecsvtxtCreator(); 
+		ProductAlSammour reader = creatorsAlSammour.factoryMethod(typ); 
+		
+	    String[] zeile = reader.leseAusDatei();
 	    this.moebelstueck = new Moebelstueck(zeile[0],
 	        zeile[1],
 	        zeile[2],
 	        Float.parseFloat(zeile[3]),
 	        zeile[4].split("_"));
-	    ein.close();
+	    reader.schlisseDatei();
       		
 	}
 		

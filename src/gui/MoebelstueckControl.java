@@ -19,22 +19,20 @@ public class MoebelstueckControl {
 	  
     public void leseAusDatei(String typ){
     	try {
-    		if("csv".equals(typ)) {
+    		
     			this.moebelstueckModel.leseAusDatei(typ);
     			moebelstueckView.zeigeInformationsfensterAn("Datei erfolgreich eingelesen!"); 
-    			
-    		}
-    		else {
-    			System.out.println("txt noch nicht ");
-    		}
+    		
 		}
 		catch(IOException exc){
 			moebelstueckView.zeigeFehlermeldungsfensterAn(
 				"IOException beim Lesen!");
+			//exc.printStackTrace();
 		}
 		catch(Exception exc){
 			moebelstueckView.zeigeFehlermeldungsfensterAn(
 				"Unbekannter Fehler beim Lesen!");
+			//exc.printStackTrace();
 		}
 	}
 		
